@@ -1,27 +1,24 @@
-import axios from "axios";
+const BaseURL = "https://localhost:7257/api";
 
-export default axios.create({
-  baseURL: "http://localhost:8080",
-  headers: {
-    "Content-type": "application/json",
-  },
-});
+const fetchOptions = (type, data) => {
+  return {
+    method: type,
+    cache: "no-cache",
+    body: data,
+  };
+};
 
-class UploadFilesService {
-  upload(file, onUploadProgress) {
-    let formData = new FormData();
+export const postQuery = async (URL, data) => {
+  const API_URL = `${BaseURL}${URL}`;
+  const options = fetchOptions("POST", data);
+  return fetch(API_URL, options).then((response) => {
+    return response.json();
+  });
+};
 
-    formData.append("file", file);
-
-    return http.post("/upload", formData, {
-      headers: {
-        "Content-Type": "multipart/form-data",
-      },
-      onUploadProgress,
-    });
-  }
-
-  getFiles() {
-    return http.get("/files");
-  }
-}
+export const getQuery = async (URL) => {
+  const API_URL = `${BaseURL}${URL}`;
+  return await fetch(API_URL).then((response) => {
+    return response.json();
+  });
+};
