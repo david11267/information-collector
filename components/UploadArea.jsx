@@ -49,7 +49,7 @@ export default function () {
         <div className=" flex border rounded-xl ">
           <div className="flex-wrap ">
             <input
-              className="w-full rounded-xl  border-b gray-300 bg-white h-10 px-5 pr-16 text-sm focus:outline-none"
+              className="w-full rounded-t-xl  border-b gray-300 bg-white h-10 px-5 pr-16 text-sm focus:outline-none"
               id="chat"
               rows="1"
               placeholder="Input ex:&nbsp;C2:C12 "
@@ -62,13 +62,13 @@ export default function () {
                   option.Selected ? (
                     <button
                       onClick={() => handleBtnClick(option)}
-                      class=" bg-blue-400 text-white inline-block px-6 py-2.5  font-medium text-xs leading-tight uppercase transition duration-150 ease-in-out">
+                      class=" bg-blue-400 text-white inline-block px-6 py-2.5  font-medium text-xs hover:bg-blue-500 leading-tight uppercase transition duration-150 ease-in-out ">
                       {option.Name}
                     </button>
                   ) : (
                     <button
                       onClick={() => handleBtnClick(option)}
-                      class=" inline-block px-6 py-2.5  font-medium text-xs leading-tight uppercase hover:bg-blue-00 transition duration-150 ease-in-out">
+                      class=" inline-block px-6 py-2.5  font-medium text-xs leading-tight uppercase hover:bg-blue-500 transition duration-150 ease-in-out">
                       {option.Name}
                     </button>
                   )
@@ -76,7 +76,7 @@ export default function () {
               </div>
             </div>
 
-            <label className="w-full flex flex-col items-center px-4 py-6 bg-white text-blue rounded tracking-wide uppercase -blue cursor-pointer hover:bg-blue-400 hover:text-white">
+            <label className="w-full flex flex-col items-center px-4 py-6 bg-white text-blue tracking-wide uppercase -blue cursor-pointer hover:bg-blue-400 hover:text-white">
               <svg className="w-8 h-8" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
                 <path d="M16.88 9.1A4 4 0 0 1 16 17H5a5 5 0 0 1-1-9.9V7a3 3 0 0 1 4.52-2.59A4.98 4.98 0 0 1 17 8c0 .38-.04.74-.12 1.1zM11 11h3l-4-4-4 4h3v3h2v-3z" />
               </svg>
@@ -95,7 +95,7 @@ export default function () {
             </label>
             <button
               onClick={() => handleSubmit()}
-              className=" w-full bg-transparent  text-blue-700 font-semibold hover:text-white py-2 px-4  -blue cursor-pointer hover:bg-blue-400 hover:text-white-transparent rounded-xl border-t">
+              className=" w-full text-blue-700 font-semibold hover:text-white py-2 px-4  -blue cursor-pointer hover:bg-blue-400 hover:text-white-transparent rounded-b-xl border-t">
               Uppload
             </button>
           </div>
