@@ -1,7 +1,6 @@
 import React from "react";
 import * as ApiService from "../services/ApiService";
 import { useEffect } from "react";
-
 import { useState } from "react";
 
 export default function () {
@@ -13,11 +12,14 @@ export default function () {
     { Name: "Eniro", Selected: false },
     { Name: "MrKoll", Selected: false },
   ]);
+  const modes = ["Regular", "Extra Detailed", "Api Exclusive", "Database Exclusive", "Scrape Exclusive"];
+  const [mode, setMode] = useState("Regular");
 
   useEffect(() => {
-    console.log("selectedFile", selectedFile);
-    console.log("options", options);
-  }, [selectedFile]);
+    console.log("SELECTED FILE", selectedFile);
+    console.log("OPTIONS", options);
+    console.log("MODE", mode);
+  }, [selectedFile, mode]);
 
   function handleSubmit() {
     const selectedOptions = options.filter((option) => option.Selected === true);
@@ -25,7 +27,7 @@ export default function () {
     formData.append("file", selectedFile);
     try {
       ApiService.postQuery(
-        `/People?input=${stringInput}&selectedOptions=${selectedOptions.map((option) => option.Name)}`,
+        `/People?input=${stringInput}&selectedOptions=${selectedOptions.map((option) => option.Name)}&mode=${mode}`,
         formData
       ).then((response) => {
         console.log("response", response);
@@ -55,6 +57,21 @@ export default function () {
               placeholder="Input ex:&nbsp;C2:C12 "
               value={stringInput}
               onChange={(e) => setStringInput(e.target.value)}></input>
+
+            <div className="flex justify-center bg-gray-100  hover:bg-blue-500">
+              <div>
+                <label for="mode">Choose mode:</label>
+                <select
+                  onChange={(e) => setMode(e.target.value)}
+                  className="bg-transparent cursor-pointer font-bold"
+                  name="mode"
+                  id="mode">
+                  {modes.map((mode) => (
+                    <option value={mode}>{mode}</option>
+                  ))}
+                </select>
+              </div>
+            </div>
 
             <div className="flex items-center justify-center">
               <div className="inline-flex shadow-md hover:shadow-lg focus:shadow-lg" role="group">
@@ -96,7 +113,7 @@ export default function () {
             <button
               onClick={() => handleSubmit()}
               className=" w-full text-blue-700 font-semibold hover:text-white py-2 px-4  -blue cursor-pointer hover:bg-blue-400 hover:text-white-transparent rounded-b-xl border-t">
-              Uppload
+              Run
             </button>
           </div>
         </div>
