@@ -27,7 +27,9 @@ export default function () {
     formData.append("file", selectedFile);
     try {
       ApiService.postQuery(
-        `/People?input=${stringInput}&selectedOptions=${selectedOptions.map((option) => option.Name)}&mode=${mode}`,
+        `/TestRequest?input=${stringInput}&selectedOptions=${selectedOptions.map(
+          (option) => option.Name
+        )}&mode=${mode}`,
         formData
       ).then((response) => {
         console.log("response", response);
@@ -60,7 +62,7 @@ export default function () {
 
             <div className="flex justify-center bg-gray-100  hover:bg-blue-500">
               <div>
-                <label for="mode">Choose mode:</label>
+                <label htmlFor="mode">Choose mode:</label>
                 <select
                   onChange={(e) => setMode(e.target.value)}
                   className="bg-transparent cursor-pointer font-bold"
@@ -79,13 +81,13 @@ export default function () {
                   option.Selected ? (
                     <button
                       onClick={() => handleBtnClick(option)}
-                      class=" bg-blue-400 text-white inline-block px-6 py-2.5  font-medium text-xs hover:bg-blue-500 leading-tight uppercase transition duration-150 ease-in-out ">
+                      className=" bg-blue-400 text-white inline-block px-6 py-2.5  font-medium text-xs hover:bg-blue-500 leading-tight uppercase transition duration-150 ease-in-out ">
                       {option.Name}
                     </button>
                   ) : (
                     <button
                       onClick={() => handleBtnClick(option)}
-                      class=" inline-block px-6 py-2.5  font-medium text-xs leading-tight uppercase hover:bg-blue-500 transition duration-150 ease-in-out">
+                      className=" inline-block px-6 py-2.5  font-medium text-xs leading-tight uppercase hover:bg-blue-500 transition duration-150 ease-in-out">
                       {option.Name}
                     </button>
                   )

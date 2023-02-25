@@ -1,4 +1,4 @@
-const BaseURL = "https://localhost:7257/api";
+const BaseURL = "https://localhost:7257/api/Test";
 
 const fetchOptions = (type, data) => {
   return {
